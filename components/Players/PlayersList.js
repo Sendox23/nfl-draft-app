@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import PlayerCard from "./PlayerCard";
-import styles from "./playerslist.module.css";
+import styles from "./PlayersList.module.css";
 import useFetchPlayers from "../../hooks/useFetchPlayers";
 import useFetchTeams from "../../hooks/useFetchTeams";
 import { nflTeamColors } from "@/resources/NFL_TEAM_COLORS";
