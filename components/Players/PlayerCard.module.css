@@ -1,0 +1,39 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 200px;
+  border: 3px solid black;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  background-color: #f0f0f0;
+  padding: 5px;
+}
+.textContainer {
+  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  text-align: center;
+}
+.card h3 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card p {
+  margin: 0;
+  font-size: 14px;
+}

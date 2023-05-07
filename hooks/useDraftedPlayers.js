@@ -1,0 +1,40 @@
+import { useState, useEffect } from "react";
+import { getDatabase, ref, onValue, off, set } from "firebase/database";
+
+export const useDraftedPlayers = () => {
+  const [draftedPlayers, setDraftedPlayers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const draftedPlayersRef = ref(db, "drafted_players");
+    const unsubscribe = onValue(
+      draftedPlayersRef,
+      (snapshot) => {
+        const players = snapshot.val() || {};
+        setDraftedPlayers(Object.values(players));
+        setLoading(false);
+      },
+      (error) => {
+        setError(error);
+        setLoading(false);
+      }
+    );
+
+    return () => {
+      off(draftedPlayersRef, "value", unsubscribe);
+    };
+  }, []);
+
+  const addDraftedPlayer = async (playerId) => {
+    const db = getDatabase();
+    try {
+      await set(ref(db, `drafted_players/${playerId}`), playerId);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  return { draftedPlayers, loading, error, addDraftedPlayer };
+};

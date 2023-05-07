@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar h1 {
+  color: white;
+  margin: 0;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.userEmail {
+  color: white;
+  padding: 15px;
+}

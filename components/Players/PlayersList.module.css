@@ -1,0 +1,32 @@
+.playersList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.playersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  width: 100%;
+}
+
+
+
+
+.resetFilterButton {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.resetFilterButton:hover {
+  background-color: #0056b3;
+}
