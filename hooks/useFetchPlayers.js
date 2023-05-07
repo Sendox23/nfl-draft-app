@@ -9,7 +9,7 @@ const useFetchPlayers = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.sportsdata.io/v3/nfl/scores/json/Players?key=${process.env.SPORTS_DATA_API_KEY}`
+          `https://api.sportsdata.io/v3/nfl/scores/json/Players?key=${process.env.NEXT_PUBLIC_FOOTBALL_API_KEY}`
         );
         if (!response.ok) {
           throw new Error("Error fetching players data");

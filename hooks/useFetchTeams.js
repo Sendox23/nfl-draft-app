@@ -8,7 +8,7 @@ const useFetchTeams = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await fetch(`https://api.sportsdata.io/v3/nfl/scores/json/AllTeams?key=${process.env.SPORTS_DATA_API_KEY}`);
+        const response = await fetch(`https://api.sportsdata.io/v3/nfl/scores/json/AllTeams?key=${process.env.NEXT_PUBLIC_FOOTBALL_API_KEY}`);
         const data = await response.json();
         setTeams(data);
         setLoading(false);
