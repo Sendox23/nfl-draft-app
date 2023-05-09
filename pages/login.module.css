@@ -1,44 +1,57 @@
 .loginMain {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  .inputGroup {
-    margin-bottom: 1rem;
-  }
-  
-  .loginButton,
-  .signupButton {
-    display: block;
-    width: 100%;
-    padding: 0.5rem;
-    background-color: #0070f3;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .loginButton:hover,
-  .signupButton:hover {
-    background-color: #0050c3;
-  }
-  
-  .toggleSignup {
-    color: #0070f3;
-    cursor: pointer;
-  }
-  
-  .toggleSignup:hover {
-    text-decoration: underline;
-  }
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
 
-  /* ... */
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.loginButton,
+.signupButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0070f3;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.loginButton:hover,
+.signupButton:hover {
+  background-color: #0050c3;
+}
+
+.toggleSignup {
+  color: #0070f3;
+  cursor: pointer;
+}
+
+.toggleSignup:hover {
+  text-decoration: underline;
+}
 
 .errorMessage {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
+  color: red;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}

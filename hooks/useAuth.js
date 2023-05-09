@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../api/firebase";
 
@@ -24,7 +24,7 @@ export const useAuth = () => {
     };
   }, []);
 
-  const signUpWithEmail = async (email, password, displayName) => {
+  const signUpWithEmail = async (email, password, teamName) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -33,11 +33,11 @@ export const useAuth = () => {
       );
       const user = userCredential.user;
       // Update user profile with display name
-      await updateProfile(user, { displayName });
+      await updateProfile(user, { displayName: teamName });
 
       setUser({
         uid: user.uid,
-        displayName: displayName,
+        displayName: teamName,
       });
       setError(null);
       return user;
@@ -46,7 +46,6 @@ export const useAuth = () => {
       throw error;
     }
   };
-
   const signInWithEmail = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(

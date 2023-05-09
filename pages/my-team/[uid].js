@@ -6,11 +6,13 @@ import useUserTeam from "@/hooks/useUserTeam";
 import { useAuth } from "@/hooks/useAuth";
 import RemovePlayerButton from "@/components/Players/RemovePlayerButton";
 import styles from "./myTeam.module.css";
+import { withAuth } from "@/components/Auth/withAuth";
 
 const MyTeam = () => {
   const router = useRouter();
   const { uid } = router.query;
   const { user } = useAuth();
+
   const { team, loading, error } = useUserTeam(uid);
   console.log(user);
   if (loading) {
@@ -46,4 +48,4 @@ const MyTeam = () => {
   );
 };
 
-export default MyTeam;
+export default withAuth(MyTeam)  ;

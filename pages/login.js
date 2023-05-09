@@ -9,16 +9,15 @@ const LoginPage = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [teamName, setTeamName] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     try {
       let user;
       if (isSignUp) {
-        user = await signUpWithEmail(email, password);
+        user = await signUpWithEmail(email, password, teamName);
       } else {
         user = await signInWithEmail(email, password);
       }
@@ -28,9 +27,7 @@ const LoginPage = () => {
     }
   };
 
-  const toggleSignUp = () => {
-    setIsSignUp(!isSignUp);
-  };
+  const toggleSignUp = () => setIsSignUp(!isSignUp);
 
   if (user) {
     return (
@@ -41,10 +38,23 @@ const LoginPage = () => {
       </Layout>
     );
   }
+
   return (
     <Layout>
       <div className={styles.loginMain}>
-        <h1>{isSignUp ? "Sign up" : "Login"}</h1>
+        <h1>{isSignUp ? "Sign up" : "Login"}</h1>{" "}
+        {isSignUp && (
+          <div className={styles.inputGroup}>
+            <label htmlFor="teamName">Team Name:</label>
+            <input
+              type="text"
+              id="teamName"
+              value={teamName}
+              onChange={(e) => setTeamName(e.target.value)}
+              required
+            />
+          </div>
+        )}
         {error && <p className={styles.errorMessage}>{error}</p>}
         <form onSubmit={handleFormSubmit}>
           <div className={styles.inputGroup}>
@@ -67,6 +77,7 @@ const LoginPage = () => {
               required
             />
           </div>
+
           <button
             type="submit"
             className={isSignUp ? styles.signupButton : styles.loginButton}
