@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styles from './PlayerCard.module.css';
 
 const generateGradientBackground = (colors) => {
@@ -18,8 +17,8 @@ const generateGradientBackground = (colors) => {
   return `linear-gradient(to right, ${gradient})`;
 };
 
-// Destructure the player prop for better readability
-const PlayerCard = ({  player: {  Name, Position, CurrentTeam, PhotoUrl }, colors }) => {
+const PlayerCard = ({ player, colors }) => {
+  const { Name, Position, CurrentTeam, PhotoUrl } = player;
   const teamGradient = generateGradientBackground(colors);
 
   return (
@@ -32,7 +31,7 @@ const PlayerCard = ({  player: {  Name, Position, CurrentTeam, PhotoUrl }, color
           <p>Team: {CurrentTeam}</p>
         ) : (
           <p>Team: Free Agent</p>
-        )}  
+        )}
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import useUserTeam from "../../hooks/useUserTeam";
 import { useDraftedPlayers } from "../../hooks/useDraftedPlayers";
 import PositionFilter from "./PositionFilter";
 import TeamFilter from "./TeamFilter";
+
 const PlayersList = () => {
   const { players, loading, error } = useFetchPlayers();
   const { teams: allTeams } = useFetchTeams();
@@ -59,6 +60,7 @@ const PlayersList = () => {
       draftedPlayers,
     ]
   );
+
 
   const getTeamColors = (teamKey) => {
     return nflTeamColors.find((team) => team.name === teamKey)?.colors;

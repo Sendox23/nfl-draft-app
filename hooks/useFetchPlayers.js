@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetchPlayers = () => {
+const useFetchPlayers = (playerIds) => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -8,9 +8,14 @@ const useFetchPlayers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://api.sportsdata.io/v3/nfl/scores/json/Players?key=${process.env.NEXT_PUBLIC_FOOTBALL_API_KEY}`
-        );
+        let apiUrl = `https://api.sportsdata.io/v3/nfl/scores/json/Players?key=${process.env.NEXT_PUBLIC_FOOTBALL_API_KEY}`;
+
+        if (playerIds && playerIds.length > 0) {
+          apiUrl += `&ids=${playerIds.join(",")}`;
+        }
+
+        const response = await fetch(apiUrl);
+
         if (!response.ok) {
           throw new Error("Error fetching players data");
         }
@@ -24,7 +29,7 @@ const useFetchPlayers = () => {
     };
 
     fetchData();
-  }, []);
+  }, [playerIds]);
 
   return { players, loading, error };
 };

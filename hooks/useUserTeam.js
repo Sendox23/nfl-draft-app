@@ -1,50 +1,49 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "./useAuth";
-import { database } from "../api/firebase";
-import { getDatabase, ref, set, onValue, off } from "firebase/database";
-import { useDraftedPlayers } from "./useDraftedPlayers";
 
-export const useUserTeam = () => {
+const useUserTeam = (uid) => {
   const { user } = useAuth();
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { draftedPlayers, addDraftedPlayer } = useDraftedPlayers();
 
   useEffect(() => {
-    if (!user) {
-      return;
-    }
-
     const fetchData = async () => {
-      setLoading(true);
       try {
-        const teamRef = ref(database, `teams/${user.uid}`);
-        const snapshot = await onValue(teamRef, (snapshot) => {
-          if (snapshot.exists()) {
-            setTeam(snapshot.val().players || []);
-          } else {
-            set(ref(database, `teams/${user.uid}/players`), []);
-          }
-          setLoading(false);
-        });
-      } catch (err) {
-        setError(err.message);
+        const targetUid = uid || user.uid;
+        const response = await fetch(`/api/my-team/${targetUid}`);
+        if (!response.ok) {
+          throw new Error("Error fetching user's team data");
+        }
+        const data = await response.json();
+        setTeam(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, [user]);
+    if (user) {
+      fetchData();
+    }
+  }, [user, uid]);
 
   const addPlayerToTeam = async (player) => {
-    const db = getDatabase();
     try {
-      await set(ref(db, `users/${user.uid}/team/${player.PlayerID}`), player);
-      setTeam((prevTeam) => [...prevTeam, player]);
-      addDraftedPlayer(player.PlayerID);
-    } catch (err) {
-      setError(err);
+      const response = await fetch(`/api/my-team/${user.uid}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(player),
+      });
+      if (!response.ok) {
+        throw new Error("Error adding player to user's team");
+      }
+      setTeam((prevState) => [...prevState, player]);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
