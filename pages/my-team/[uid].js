@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout/Layout";
 import PlayerCard from "@/components/Players/PlayerCard";
-import { teamColors } from "../../resources/NFL_TEAM_COLORS";
+import { nflTeamColors } from "../../resources/NFL_TEAM_COLORS"
 import useUserTeam from "@/hooks/useUserTeam";
 import { useAuth } from "@/hooks/useAuth";
 import RemovePlayerButton from "@/components/Players/RemovePlayerButton";
@@ -36,7 +36,7 @@ const MyTeam = () => {
                 .filter((player) => player.Position === position)
                 .map((player) => (
                   <div key={player.PlayerID} className={styles.playerWrapper}>
-                    <PlayerCard player={player} colors={teamColors} />
+                    <PlayerCard player={player} colors={nflTeamColors} />
                     <RemovePlayerButton playerId={player.PlayerID} />
                   </div>
                 ))}
