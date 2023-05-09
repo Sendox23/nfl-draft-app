@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getDatabase, ref, onValue, off, set } from "firebase/database";
 import { useAuth } from "./useAuth";
 
 const useUserTeam = (uid) => {
@@ -8,18 +9,29 @@ const useUserTeam = (uid) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const db = getDatabase();
     const fetchData = async () => {
       try {
         const targetUid = uid || user.uid;
-        const response = await fetch(`/api/my-team/${targetUid}`);
-        if (!response.ok) {
-          throw new Error("Error fetching user's team data");
-        }
-        const data = await response.json();
-        setTeam(data);
+        const userTeamRef = ref(db, `user_teams/${targetUid}`);
+        const unsubscribe = onValue(
+          userTeamRef,
+          (snapshot) => {
+            const players = snapshot.val() ? Object.values(snapshot.val()) : [];
+            setTeam(players);
+            setLoading(false);
+          },
+          (error) => {
+            setError(error);
+            setLoading(false);
+          }
+        );
+
+        return () => {
+          off(userTeamRef, "value", unsubscribe);
+        };
       } catch (error) {
         setError(error.message);
-      } finally {
         setLoading(false);
       }
     };
@@ -30,17 +42,9 @@ const useUserTeam = (uid) => {
   }, [user, uid]);
 
   const addPlayerToTeam = async (player) => {
+    const db = getDatabase();
     try {
-      const response = await fetch(`/api/my-team/${user.uid}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(player),
-      });
-      if (!response.ok) {
-        throw new Error("Error adding player to user's team");
-      }
+      await set(ref(db, `user_teams/${user.uid}/${player.PlayerID}`), player);
       setTeam((prevState) => [...prevState, player]);
     } catch (error) {
       setError(error.message);

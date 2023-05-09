@@ -99,21 +99,32 @@ const PlayersList = () => {
   return (
     <div className={styles.playersList}>
       <div className={styles.filters}>
-        <input
-          type="text"
-          placeholder="Search players"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <PositionFilter
-          selectedPositions={selectedPositions}
-          handlePositionChange={handlePositionChange}
-        />
-        <TeamFilter
-          allTeams={allTeams}
-          filterTeam={filterTeam}
-          setFilterTeam={setFilterTeam}
-        />
+        <div className={styles.searchBar}>
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder="Search players"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className={styles.filterWrapper}>
+          <label>Filter by Position</label>
+          <PositionFilter
+            selectedPositions={selectedPositions}
+            handlePositionChange={handlePositionChange}
+          />
+        </div>
+        <div className={styles.filterWrapper}>
+          <label>Filter by Team</label>
+          <TeamFilter
+            allTeams={allTeams}
+            filterTeam={filterTeam}
+            setFilterTeam={setFilterTeam}
+          />
+        </div>
+      </div>
+      <div className={styles.filtersBottom}>
         <label>
           <input
             type="checkbox"
@@ -130,7 +141,7 @@ const PlayersList = () => {
         {filteredPlayers.map((player) => {
           const teamColors = getTeamColors(player.Team);
           return (
-            <div key={player.PlayerID}>
+            <div key={player.PlayerID} className={styles.playerCardContainer}>
               <PlayerCard player={player} colors={teamColors} />
               <button
                 className={styles.draftButton}

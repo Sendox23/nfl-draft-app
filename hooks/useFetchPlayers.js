@@ -34,4 +34,4 @@ const useFetchPlayers = (playerIds) => {
   return { players, loading, error };
 };
 
-export default useFetchPlayers;
+export default useFetchPlayers

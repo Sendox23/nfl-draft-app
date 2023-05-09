@@ -7,7 +7,7 @@ const TeamFilter = ({ allTeams, filterTeam, setFilterTeam }) => {
 
   return (
     <>
-      <label htmlFor="team-filter">Filter by team:</label>
+      <label htmlFor="team-filter"></label>
       <select
         id="team-filter"
         value={filterTeam}

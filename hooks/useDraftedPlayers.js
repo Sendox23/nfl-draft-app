@@ -38,3 +38,5 @@ export const useDraftedPlayers = () => {
 
   return { draftedPlayers, loading, error, addDraftedPlayer };
 };
+
+export default useDraftedPlayers

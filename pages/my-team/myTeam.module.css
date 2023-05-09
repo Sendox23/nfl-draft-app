@@ -1,0 +1,53 @@
+.myTeam {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .myTeam h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .myTeam p {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .positionSection {
+    grid-column: 1 / -1;
+  }
+  
+  .positionSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .playersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: .5rem;
+    justify-content: center;
+  }
+  
+  .playerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (min-width: 768px) {
+    .myTeam {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }

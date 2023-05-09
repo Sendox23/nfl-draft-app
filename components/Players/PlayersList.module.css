@@ -6,15 +6,78 @@
   width: 100%;
 }
 
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.searchBar {
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  width: 50%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.filtersBottom {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+.filterWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.filters input[type='text'],
+.filters select {
+  margin: 0.5rem;
+}
+
 .playersGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  justify-content: center;
   width: 100%;
+}
+
+.playerCardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
 
+.draftButton {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.draftButton:hover {
+  background-color: #0056b3;
+}
 
 .resetFilterButton {
   padding: 5px 10px;
@@ -24,6 +87,7 @@
   border-radius: 3px;
   font-size: 14px;
   cursor: pointer;
+  margin: 0.5rem;
   transition: background-color 0.3s;
 }
 

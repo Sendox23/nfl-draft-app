@@ -5,7 +5,7 @@ const PositionFilter = ({  handlePositionChange }) => {
 
   return (
     <div>
-      <span>Filter by position:</span>
+
       {positionOptions.map((position) => (
         <label key={position}>
           <input
